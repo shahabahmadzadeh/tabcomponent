@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 const tabData = [
   {
@@ -18,27 +19,40 @@ const tabData = [
 ];
 
 function App() {
-  const activeTab = 2;
+  const [activeTab, setActiveTab] = useState(2);
+  const [isOpen, setIsOpen] = useState(true);
+  const [count, setCount] = useState(0);
 
   const handleActiveTab = (id) => {
-    console.log({ id });
+    setActiveTab(id);
+    setCount((c) => c + 1);
+    setCount((c) => c + 1);
   };
 
   return (
-    <div className="tab">
-      <div className="tab__header">
-        {tabData.map((tab) => (
-          <button
-            onClick={() => handleActiveTab(tab.id)}
-            key={tab.id}
-            className={activeTab === tab.id ? "active" : ""}
-          >
-            <span>{tab.title}</span>
-            <span className="tab-indicator"></span>
-          </button>
-        ))}
-      </div>
-      <div className="tab__content">{tabData[activeTab - 1].content}</div>
+    <div>
+      <button onClick={() => setIsOpen((is) => !is)}>❌</button>
+      {isOpen ? (
+        <div className="tab">
+          <div className="tab__header">
+            {tabData.map((tab) => (
+              <button
+                onClick={() => handleActiveTab(tab.id)}
+                key={tab.id}
+                className={activeTab === tab.id ? "active" : ""}
+              >
+                <span>{tab.title}</span>
+                <span className="tab-indicator"></span>
+              </button>
+            ))}
+          </div>
+          <div className="tab__content">
+            {tabData[activeTab - 1].content} - {count}
+          </div>
+        </div>
+      ) : (
+        <p>closed.</p>
+      )}
     </div>
   );
 }
