@@ -35,13 +35,13 @@
 
 .tab__header .active .tab-indicator {
   display: block;
-  height: 0;
+  height: 3px;
 }
 
 .tab-indicator {
   display: none;
   width: 100%;
-  height: 3px;
+  height: 0;
   background-color: var(--blue-700);
   position: absolute;
   bottom: -1rem;
