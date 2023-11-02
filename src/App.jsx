@@ -19,9 +19,10 @@ const tabData = [
 ];
 
 function App() {
-  const activeTab = 2;
-  const handlerAciveTab = (id) => {
-    console.log("clicked", id);
+  const [activeTab, setActiveTab] = useState(3);
+  // const activeTab = 2;
+  const handleAciveTab = (id) => {
+    setActiveTab(id);
   };
   return (
     <div className="tab">
@@ -29,7 +30,7 @@ function App() {
         {tabData.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => handlerAciveTab(tab.id)}
+            onClick={() => handleAciveTab(tab.id)}
             className={activeTab === tab.id ? "active" : ""}
           >
             <span>{tab.title}</span>
